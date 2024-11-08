@@ -1,0 +1,75 @@
+# Secure Chat com Troca de Chave Segura
+
+## Descrição
+Este projeto implementa um chat TCP seguro com troca de chave Diffie-Hellman e cifra de César para criptografar as mensagens.
+
+## Estrutura do Projeto
+secure_chat/ ├── client/ │ ├── init.py │ ├── client.py # Código principal do cliente TCP │ ├── diffie_hellman.py # Implementação do algoritmo de Diffie-Hellman │ └── caesar_cipher.py # Funções para cifrar e decifrar mensagens com a cifra de César ├── server/ │ ├── init.py │ └── server.py # Código principal do servidor TCP ├── logs/ │ └── chat_log.txt # Arquivo de log das operações (chaves, mensagens cifradas e decifradas) ├── README.md # Descrição do projeto, instruções de instalação e uso └── requirements.txt # Dependências necessárias, caso você use alguma biblioteca externa
+
+
+
+## Pré-requisitos
+- Python 3.x instalado em ambas as máquinas.
+- Acesso à rede para permitir a comunicação entre servidor e cliente.
+
+## Configuração e Execução
+
+### 1. Preparar as Máquinas
+- **Máquina Servidor**: Esta máquina será responsável por executar o servidor TCP.
+- **Máquina Cliente**: Esta máquina será responsável por executar um ou mais clientes TCP que se conectarão ao servidor.
+
+### 2. Copiar os Arquivos do Projeto
+1. **Transferência dos Arquivos**:
+   - **Para a Máquina Servidor**:
+     - Transfira todo o diretório `secure_chat` para a máquina que atuará como servidor.
+   - **Para a Máquina Cliente**:
+     - Transfira todo o diretório `secure_chat` para cada máquina que atuará como cliente.
+
+   Você pode usar métodos de transferência de arquivos como:
+   - **SCP (Secure Copy Protocol)**:
+     ```bash
+     scp -r /path/to/secure_chat username@server_ip:/path/to/destination
+     ```
+   - **SFTP (Secure File Transfer Protocol)**: Permite transferir arquivos de forma interativa.
+   - **Transferência via USB**: Para máquinas não conectadas à mesma rede.
+   - **Serviços de Armazenamento em Nuvem**: Como Google Drive ou Dropbox.
+
+### 3. Instalar o Python (Se Necessário)
+- Verifique a instalação do Python com:
+
+  python --version
+Se não estiver instalado, você pode instalá-lo usando o gerenciador de pacotes apropriado. Por exemplo, em sistemas baseados em Debian/Ubuntu:
+
+sudo apt update
+sudo apt install python3
+4. Iniciar o Servidor
+Na máquina do servidor, abra um terminal.
+Navegue até o diretório do projeto:
+
+
+cd /path/to/secure_chat/server
+Execute o servidor:
+
+python server.py
+O servidor deve começar a ouvir na porta especificada (por exemplo, 12345).
+
+5. Iniciar o Cliente
+Na máquina do cliente, abra um terminal.
+Navegue até o diretório do projeto:
+
+
+cd /path/to/secure_chat/client
+Execute o cliente:
+
+python client.py
+
+O cliente tentará se conectar ao servidor. Certifique-se de que você está usando o endereço IP correto do servidor.
+
+6. Testar a Conexão
+Após iniciar ambos os processos (servidor e cliente), você pode começar a trocar mensagens. Digite uma mensagem no cliente e verifique se ela é cifrada e recebida corretamente no servidor, e vice-versa.
+Notas Importantes
+Firewall: Verifique se o firewall da máquina servidor permite conexões na porta que o servidor está escutando (por exemplo, 12345). Você pode precisar adicionar uma regra ao firewall para permitir tráfego nessa porta.
+
+Endereço IP: Se o servidor estiver em uma rede diferente, certifique-se de usar o IP público ou hostname correto para conectar o cliente ao servidor.
+
+Testes Locais: Se você estiver apenas testando em uma única máquina, você pode executar o servidor e o cliente na mesma máquina usando localhost ou 127.0.0.1 como o endereço do servidor.
